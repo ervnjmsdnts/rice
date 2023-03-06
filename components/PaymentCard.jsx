@@ -19,10 +19,15 @@ const PaymentCard = (props) => {
             {moment(createdAt).format("MMM DD YYYY hh:mm A")}
           </Text>
         </View>
-        <View>
+        <View className="flex flex-col items-end gap-2">
           <Text className="text-2xl">
             {"\u20B1"}
             {total}.00
+          </Text>
+          <Text
+            className={`rounded-full block py-1 px-2 text-xs text-center text-white bg-lime-500`}
+          >
+            Paid
           </Text>
         </View>
       </View>
