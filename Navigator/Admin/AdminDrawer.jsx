@@ -21,7 +21,7 @@ const drawers = [
     icon: "people",
   },
   {
-    name: "Records Of Payments",
+    name: "Record Of Payments",
     component: PaymentStack,
     icon: "cash",
   },

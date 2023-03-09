@@ -28,6 +28,8 @@ const CreatePaymentScreen = () => {
   const [from, setFrom] = useState(new Date());
   const [to, setTo] = useState(new Date());
 
+  const [showError, setShowError] = useState(false);
+
   const handleFrom = (date) => {
     setFrom(new Date(date));
     setShowFrom(false);
@@ -118,7 +120,12 @@ const CreatePaymentScreen = () => {
       to: new Date(to).getTime(),
     };
 
-    await execute(payload);
+    if (totalKg === 0) {
+      return setShowError(true);
+    }
+
+    setShowError(false);
+    return await execute(payload);
   };
 
   return (
@@ -126,6 +133,13 @@ const CreatePaymentScreen = () => {
       <SafeAreaView className="p-4 h-full">
         <Back title="Create Payment" />
         <View className="mt-4">
+          {showError && (
+            <View className="p-2 mb-2 border border-red-600 rounded-lg">
+              <Text className="text-center text-red-400">
+                No Operations to Pay
+              </Text>
+            </View>
+          )}
           <View className="flex-row items-center mb-4 justify-between">
             <View className="">
               <TouchableOpacity
